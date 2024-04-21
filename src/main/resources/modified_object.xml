@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<platformCore:record xmlns:platformCore="urn:core.platform.webservices.netsuite.com" xmlns="urn:messages.platform.webservices.netsuite.com" xmlns:listRel="urn:relationships.lists.webservices.netsuite.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" externalId="3673457" internalId="683047" xsi:type="listRel:Customer">
+   <listRel:entityId>ABC14Test</listRel:entityId>
+   <listRel:isPerson>false</listRel:isPerson>
+   <listRel:companyName>ABC14Test</listRel:companyName>
+   <listRel:entityStatus internalId="13">
+      <platformCore:name>CUSTOMER-Closed Won</platformCore:name>
+   </listRel:entityStatus>
+   <listRel:phone>634-5515</listRel:phone>
+   <listRel:email>john.smith@noname.com</listRel:email>
+   <listRel:isInactive>false</listRel:isInactive>
+   <listRel:category internalId="1">
+      <platformCore:name>Corporate</platformCore:name>
+   </listRel:category>
+   <listRel:language>_englishUS</listRel:language>
+   <listRel:dateCreated>2022-04-14T12:53:58.000-07:00</listRel:dateCreated>
+   <listRel:emailPreference>_default</listRel:emailPreference>
+   <listRel:creditHoldOverride>_auto</listRel:creditHoldOverride>
+   <listRel:unbilledOrders>0.0</listRel:unbilledOrders>
+   <listRel:consolUnbilledOrders>0.0</listRel:consolUnbilledOrders>
+   <listRel:consolOverdueBalance>0.0</listRel:consolOverdueBalance>
+   <listRel:consolDepositBalance>0.0</listRel:consolDepositBalance>
+   <listRel:consolBalance>0.0</listRel:consolBalance>
+   <listRel:currency internalId="1">
+      <platformCore:name>USA</platformCore:name>
+   </listRel:currency>
+   <listRel:shipComplete>false</listRel:shipComplete>
+   <listRel:taxable>true</listRel:taxable>
+   <listRel:alcoholRecipientType>_consumer</listRel:alcoholRecipientType>
+   <listRel:giveAccess>false</listRel:giveAccess>
+   <listRel:accessRole internalId="14">
+      <platformCore:name>Customer Center</platformCore:name>
+   </listRel:accessRole>
+   <listRel:receivablesAccount internalId="-10">
+      <platformCore:name>Use System Preference</platformCore:name>
+   </listRel:receivablesAccount>
+   <listRel:webLead>No</listRel:webLead>
+   <listRel:lastModifiedDate>2024-04-12T10:02:44.000-07:00</listRel:lastModifiedDate>
+   <listRel:stage>_customer</listRel:stage>
+   <listRel:emailTransactions>false</listRel:emailTransactions>
+   <listRel:printTransactions>false</listRel:printTransactions>
+   <listRel:faxTransactions>false</listRel:faxTransactions>
+   <listRel:syncPartnerTeams>false</listRel:syncPartnerTeams>
+   <listRel:isBudgetApproved>false</listRel:isBudgetApproved>
+   <listRel:globalSubscriptionStatus>_softOptIn</listRel:globalSubscriptionStatus>
+   <listRel:customFieldList>
+      <StringCustomFieldRef__custentity8 xmlns="urn:core.platform.webservices.netsuite.com" internalId="91" scriptId="custentity8" xsi:type="platformCore:StringCustomFieldRef">
+         <platformCore:value>683047</platformCore:value>
+      </StringCustomFieldRef__custentity8>
+      <BooleanCustomFieldRef__custentity_2663_customer_refund xmlns="urn:core.platform.webservices.netsuite.com" internalId="494" scriptId="custentity_2663_customer_refund" xsi:type="platformCore:BooleanCustomFieldRef">
+         <platformCore:value>false</platformCore:value>
+      </BooleanCustomFieldRef__custentity_2663_customer_refund>
+      <BooleanCustomFieldRef__custentity_2663_direct_debit xmlns="urn:core.platform.webservices.netsuite.com" internalId="488" scriptId="custentity_2663_direct_debit" xsi:type="platformCore:BooleanCustomFieldRef">
+         <platformCore:value>false</platformCore:value>
+      </BooleanCustomFieldRef__custentity_2663_direct_debit>
+   </listRel:customFieldList>
+</platformCore:record>

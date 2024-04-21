@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:netsuite="http://www.mulesoft.org/schema/mule/netsuite"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/netsuite http://www.mulesoft.org/schema/mule/netsuite/current/mule-netsuite.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	
+	<netsuite:config name="NetSuite_Config" doc:name="NetSuite Config" doc:id="8a21cc68-d758-4431-bf50-b95496522741" >
+		<netsuite:token-based-authentication-connection consumerKey="${netsuite.consumerKey}" consumerSecret="${netsuite.consumerSecret}" tokenId="${netsuite.tokenId}" tokenSecret="${netsuite.tokenSecret}" account="${netsuite.accountId}" wsdlVersion="V2021_1" signatureAlgorithm="${netsuite.signatureAlgorithm}"/>
+	</netsuite:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="7fe60627-c3cb-42f7-a11f-14ad302a1c18" file="config-local.yaml" />
+	
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1e8cd8fe-567b-4571-9014-2e5fe5efb85f" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	
+	<flow name="ItemSearchAdvancedFlow" doc:id="ffcc261f-f7c2-4ae4-9571-7e1b23f9bbfe" >
+		<http:listener doc:name=":8081/item" doc:id="5927cc69-9c69-4d80-82de-10bdfadef1fd" config-ref="HTTP_Listener_config" path="/item"/>
+		<set-variable value="#[attributes.queryParams.id]" doc:name="Set Variable" doc:id="9d1a984c-c486-42a1-9434-08882b221238" variableName="searchId"/>
+		<ee:transform doc:name="Transform Message" doc:id="669d8a92-60a7-4467-9ef9-afa3953082d2" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/xml
+ns ns0 urn:messages.platform.webservices.netsuite.com
+ns q1 urn:accounting.lists.webservices.netsuite.com
+---
+{
+	ns0#search: {
+		ns0#searchRecord @("xmlns:q1": q1, xsi#"type": "q1:ItemSearchAdvanced", "savedSearchId":vars.searchId): null
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<netsuite:search doc:name="Search ItemSearchAdvanced" doc:id="2804b8ba-cd16-41c5-8303-9477feae9fc5" config-ref="NetSuite_Config" key="ItemSearchAdvanced" />
+		<ee:transform doc:name="Transform Message" doc:id="3a905ee5-e216-44e6-b946-2e38ee32c4f6">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload.payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	
+</mule>
