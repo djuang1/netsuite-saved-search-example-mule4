@@ -25,10 +25,21 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 output application/xml
 ns ns0 urn:messages.platform.webservices.netsuite.com
 ns q1 urn:accounting.lists.webservices.netsuite.com
+ns q02 urn:common.platform.webservices.netsuite.com
 ---
 {
 	ns0#search: {
-		ns0#searchRecord @("xmlns:q1": q1, xsi#"type": "q1:ItemSearchAdvanced", "savedSearchId":vars.searchId): null
+		ns0#searchRecord @("xmlns:q1": q1, xsi#"type": "q1:ItemSearchAdvanced", "savedSearchId": vars.searchId): {
+			q1#columns: {
+				q1#basic: {
+					q02#displayName: null,
+					q02#externalId: null,
+					q02#internalId: null,
+					q02#itemId: null,
+					q02#"type": null
+				}
+			}
+		}
 	}
 }]]></ee:set-payload>
 			</ee:message>
